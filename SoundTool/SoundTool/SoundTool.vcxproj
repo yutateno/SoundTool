@@ -162,10 +162,12 @@
     <ClCompile Include="BackGroundMusic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SoundEffects.cpp" />
+    <ClCompile Include="ThirdDimensionalSoundEffects.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGroundMusic.hpp" />
     <ClInclude Include="SoundEffects.hpp" />
+    <ClInclude Include="ThirdDimensionalSoundEffects.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,12 +1,12 @@
-#include "BackGroundMusic.hpp"
+#include "ThirdDimensionalSoundEffects.hpp"
 
-BackGroundMusic::BackGroundMusic()
+ThirdDimensionalSoundEffects::ThirdDimensionalSoundEffects()
 {
 	std::vector<std::string>().swap(m_name);
 	std::vector<int>().swap(m_data);
 }
 
-BackGroundMusic::~BackGroundMusic()
+ThirdDimensionalSoundEffects::~ThirdDimensionalSoundEffects()
 {
 	for (size_t i = 0; i < m_data.size(); ++i)
 	{
@@ -16,7 +16,7 @@ BackGroundMusic::~BackGroundMusic()
 	std::vector<std::string>().swap(m_name);
 }
 
-void BackGroundMusic::Draw()
+void ThirdDimensionalSoundEffects::Draw()
 {
 	for (size_t i = 0; i < m_name.size(); ++i)
 	{
@@ -25,14 +25,14 @@ void BackGroundMusic::Draw()
 	}
 }
 
-void BackGroundMusic::Process()
+void ThirdDimensionalSoundEffects::Process()
 {
 }
 
-void BackGroundMusic::Load(char t_filePath[])
+void ThirdDimensionalSoundEffects::Load(char t_filePath[])
 {
-	SetCreateSoundDataType(DX_SOUNDDATATYPE_FILE);
+	SetCreate3DSoundFlag(TRUE);
 	m_name.push_back(t_filePath);
 	m_data.push_back(LoadSoundMem(t_filePath));
-	SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
+	SetCreate3DSoundFlag(FALSE);
 }
