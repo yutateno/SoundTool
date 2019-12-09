@@ -6,6 +6,7 @@
 
 #include "BackGroundMusic.hpp"
 #include "SoundEffects.hpp"
+#include "ThirdDimensionalSoundEffects.hpp"
 
 
 bool Init(const int t_winWidth, const int t_winHeight, const int t_bitColor, std::string t_projectName)
@@ -59,6 +60,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SoundEffects m_soundEffects = SoundEffects();
 	BackGroundMusic m_backGroundMusic = BackGroundMusic();
+	ThirdDimensionalSoundEffects m_3DsoundEffects = ThirdDimensionalSoundEffects();
 
 
 	// メインループ
@@ -68,6 +70,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		InputControl::MouseData::UpDate();
 
 		DrawLine(1280 / 2, 0, 1280 / 2, 720, GetColor(0, 0, 0));
+		DrawLine(0, 720 / 2, 1280 / 2, 720 / 2, GetColor(0, 0, 0));
 
 		// ドラッグアンドドロップが行われたとき
 		if (GetDragFileNum() > 0)
@@ -78,7 +81,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			if (InputControl::MouseData::GetMouseArea().x < 1024 / 2)
 			{
-				m_soundEffects.Load(filePath);
+				if (InputControl::MouseData::GetMouseArea().y < 720 / 2)
+				{
+					m_soundEffects.Load(filePath);
+				}
+				else
+				{
+					m_3DsoundEffects.Load(filePath);
+				}
 			}
 			else
 			{
@@ -88,10 +98,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		m_soundEffects.Draw();
 		m_backGroundMusic.Draw();
+		m_3DsoundEffects.Draw();
 	}
 
 	m_soundEffects.~SoundEffects();
 	m_backGroundMusic.~BackGroundMusic();
+	m_3DsoundEffects.~ThirdDimensionalSoundEffects();
 
 	// 削除
 	DxLib::DxLib_End();		// DXライブラリの後始末
